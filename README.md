@@ -4,6 +4,17 @@ Portable SEO and audience-research workflows for Claude, Codex, ChatGPT, and oth
 
 Each skill is an independent folder with a public `SKILL.md`. Some workflows can run entirely with local files and network tools. Others can optionally use Rankizz MCP or the Rankizz REST API for live search, backlink, analytics, and audit data.
 
+## Rankizz plugin (MCP + skills)
+
+`plugins/rankizz` is the Rankizz connector plugin: it connects your agent to the hosted Rankizz MCP server (`https://www.rankizz.com/mcp`, OAuth) and bundles the skills that use it. Install it in Claude Code with:
+
+```text
+/plugin marketplace add proSamik/rankizz-skills
+/plugin install rankizz@rankizz-skills
+```
+
+The root `skills/` folder and the `rankizz-seo` plugin stay as before for agents that only want portable skills.
+
 ## Skills
 
 | Skill | Purpose | Credit usage |
