@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "rankizz": {
+      "type": "http",
+      "url": "https://www.rankizz.com/mcp"
+    }
+  }
+}

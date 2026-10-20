@@ -1,0 +1,12 @@
+{
+  "name": "rankizz",
+  "displayName": "Rankizz",
+  "version": "1.0.0",
+  "description": "SEO research and tracking: keyword research, SERPs, domain and backlink analysis, site audits, Search Console and GA4 reporting, and App Store research through your Rankizz account.",
+  "author": {
+    "name": "Rankizz",
+    "url": "https://www.rankizz.com"
+  },
+  "homepage": "https://www.rankizz.com",
+  "license": "MIT"
+}

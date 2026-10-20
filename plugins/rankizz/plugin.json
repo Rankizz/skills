@@ -1,0 +1,40 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "rankizz",
+  "version": "1.0.0",
+  "description": "SEO research and tracking through your Rankizz account.",
+  "author": {
+    "name": "Rankizz"
+  },
+  "homepage": "https://www.rankizz.com",
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Rankizz",
+        "shortDescription": "SEO research and tracking",
+        "longDescription": "Rankizz helps you research keywords and search results, analyze domains and backlinks, run technical site audits, review Search Console and GA4 data, and research App Store competitors from your Rankizz workspace.",
+        "developerName": "Rankizz",
+        "category": "Business",
+        "capabilities": [
+          "Keyword research",
+          "SERP analysis",
+          "Backlink analysis",
+          "Site audits",
+          "App Store research"
+        ],
+        "websiteURL": "https://www.rankizz.com",
+        "supportURL": "https://www.rankizz.com/support",
+        "privacyPolicyURL": "https://www.rankizz.com/privacy",
+        "termsOfServiceURL": "https://www.rankizz.com/terms",
+        "defaultPrompt": [
+          "Research keyword ideas for my Rankizz project",
+          "Run a technical audit of my site",
+          "Show Google results for a keyword in the US"
+        ],
+        "logo": "./assets/logo.png",
+        "composerIcon": "./assets/logo.png"
+      }
+    }
+  }
+}
