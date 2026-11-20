@@ -7,6 +7,10 @@ description: Run and interpret a hosted Rankizz website audit through Rankizz MC
 
 Use Rankizz for the crawl and persisted findings. Produce an evidence-based report, not a generic checklist.
 
+## Invoke Rankizz MCP tools
+
+When using Rankizz through MCP, the initial tool list is intentionally compact. Call `search_tools` with a capability query or exact domain-tool name and set `includeSchemas: true` unless the arguments are already known. Invoke a discovered tool with `call_read_tool` when its `readOnlyHint` is `true`; use `call_tool` for every other tool. Pass the discovered name as `tool` and its original input object as `arguments`. REST callers continue to use the direct `/api/v1/tools/<tool-name>` endpoint.
+
 ## Resolve access safely
 
 Prefer Rankizz MCP in interactive AI clients. Use the REST API only for headless clients or when the user explicitly chooses it. Never ask the user to paste an API key into chat; direct them to `https://www.rankizz.com/api-access` and their client's secret storage.
