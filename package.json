@@ -1,0 +1,23 @@
+{
+  "name": "@rankizz/skills",
+  "version": "0.6.0",
+  "description": "Rankizz agent skills for SEO, audience research, outreach, and evidence-based writing. Install into Claude Code, Codex, and other Agent Skills clients.",
+  "keywords": ["agent-skills", "claude-code", "codex", "seo", "rankizz", "mcp"],
+  "homepage": "https://www.rankizz.com/docs/skills",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rankizz/skills.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "rankizz-skills": "bin/cli.mjs"
+  },
+  "files": ["bin", "skills", "skills.json", "LICENSE"],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
