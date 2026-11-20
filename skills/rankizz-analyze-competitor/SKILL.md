@@ -7,6 +7,10 @@ description: Analyze one competitor's organic-search footprint, ranking topics, 
 
 Turn competitor evidence into decisions for the user's site. Do not create a flattering summary or instructions to copy the competitor.
 
+## Invoke Rankizz MCP tools
+
+When using Rankizz through MCP, the initial tool list is intentionally compact. Call `search_tools` with a capability query or exact domain-tool name and set `includeSchemas: true` unless the arguments are already known. Invoke a discovered tool with `call_read_tool` when its `readOnlyHint` is `true`; use `call_tool` for every other tool. Pass the discovered name as `tool` and its original input object as `arguments`. REST callers continue to use the direct `/api/v1/tools/<tool-name>` endpoint.
+
 ## Confirm comparison context
 
 Identify the competitor domain, user's site, target market and language, and business question. Normalize the domain and clarify whether subdomains should be included when it matters.
@@ -28,6 +32,12 @@ Use Rankizz selectively:
 - `get_domain_keyword_suggestions` when appropriate to the project workflow
 
 Hosted calls require at least 10 credits. Stop Rankizz calls on a low-credit response and link to `https://www.rankizz.com/billing`. Use a small evidence-led sequence rather than calling every tool by default.
+
+## Check AI visibility when relevant
+
+When the comparison includes AI answers, discover `research_ai_rank_tracking_prompt` with `search_tools` and `includeSchemas: true`, then use `call_tool` with the discovered name and arguments. Query one relevant prompt and only the requested providers: `chatgpt`, `google_ai_mode`, `perplexity`, `gemini`, or `claude`. Include `projectId`; use `countryCode` and `languageCode` for the comparison market. This is metered live research and does not save a prompt for later runs.
+
+Inspect each provider's `status`. A successful tool call can contain provider errors; `UPSTREAM_UNAVAILABLE` means missing evidence, not zero visibility. Successful results contain a non-empty `answer`, `brandMentioned`, `mentions`, and `citations`. The citation list combines citation and source URLs; Google AI Mode may supply attached source links. Do not describe every listed source as an inline citation. A null `webSearchTriggered` means unknown. Preserve the prompt, provider, market, and `researchedAt` timestamp in the comparison.
 
 ## Analyze, then compare
 
@@ -56,3 +66,8 @@ Do not reproduce copyrighted text, page structure, brand language, proprietary d
 Return an executive comparison, evidence table, keyword and page themes, authority findings, what to learn, what not to imitate, the strongest strategic gaps, and three prioritized actions for the user's site.
 
 Include source dates and data limitations. Recommend a competitive-landscape study when one competitor is insufficient to represent the market.
+
+For repeated comparisons, save the reviewed prompts with `add_ai_prompt`,
+choose engines with `configure_ai_prompt_run`, and explicitly request
+`run_ai_prompts`. Reuse the same UUID `runId` on retries and read the stored
+result with `get_ai_prompt_run`; there is no automatic schedule.
