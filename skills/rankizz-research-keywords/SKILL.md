@@ -7,6 +7,10 @@ description: Find, evaluate, and prioritize organic-search keyword opportunities
 
 Build a decision-ready opportunity set, not a large unfiltered keyword dump.
 
+## Invoke Rankizz MCP tools
+
+When using Rankizz through MCP, the initial tool list is intentionally compact. Call `search_tools` with a capability query or exact domain-tool name and set `includeSchemas: true` unless the arguments are already known. Invoke a discovered tool with `call_read_tool` when its `readOnlyHint` is `true`; use `call_tool` for every other tool. Pass the discovered name as `tool` and its original input object as `arguments`. REST callers continue to use the direct `/api/v1/tools/<tool-name>` endpoint.
+
 ## Establish context
 
 Read existing SEO project context, site pages, briefs, and supplied exports before asking questions. Determine:
@@ -39,8 +43,10 @@ If Rankizz is connected and quantitative prioritization is useful:
 2. Use `list_saved_keywords` before paying to re-research known terms.
 3. Use `research_keywords` for 1–5 high-value seed topics.
 4. Use `get_keyword_metrics` to hydrate a known candidate list in one batch.
-5. Use `get_serp_results` only for ambiguous intent or final-priority terms.
-6. Use `get_search_console_performance` when a connected site may already have striking-distance queries.
+5. Use `get_serp_results` only for ambiguous intent or final-priority terms in standard web search.
+6. For local intent, use `get_local_serp_results` to inspect Google Maps or Local Finder results. Pass a DataForSEO `locationCode` only when overriding the project's market; do not pass latitude or longitude.
+7. Use `get_google_business_questions` only when Google Business Profile Q&A evidence will change the keyword or content decision. It also defaults to the project's market when `locationCode` is omitted.
+8. Use `get_search_console_performance` when a connected site may already have striking-distance queries.
 
 Hosted calls require at least 10 credits. If access reports a low balance, stop Rankizz calls, link to `https://www.rankizz.com/billing`, and complete the qualitative portion without fabricated metrics.
 
