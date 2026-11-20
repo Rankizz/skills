@@ -9,7 +9,7 @@ Each skill is an independent folder with a public `SKILL.md`. Some workflows can
 `plugins/rankizz` is the Rankizz connector plugin: it connects your agent to the hosted Rankizz MCP server (`https://www.rankizz.com/mcp`, OAuth) and bundles the skills that use it. Install it in Claude Code with:
 
 ```text
-/plugin marketplace add proSamik/rankizz-skills
+/plugin marketplace add Rankizz/skills
 /plugin install rankizz@rankizz-skills
 ```
 
@@ -43,13 +43,22 @@ The root `skills/` folder and the `rankizz-seo` plugin stay as before for agents
 
 ## Install
 
-Download individual ZIP packages and read the full public instructions at [rankizz.com/docs/skills](https://www.rankizz.com/docs/skills).
+With the [skills CLI](https://github.com/vercel-labs/skills), which supports Claude Code, Codex, Cursor, and many other agents:
 
-For Codex, copy a skill folder into `~/.agents/skills/` for personal use or `.agents/skills/` inside a repository.
+```sh
+npx skills add Rankizz/skills                              # choose interactively
+npx skills add Rankizz/skills --skill rankizz-research-keywords
+```
 
-For Claude Code, copy a skill folder into `~/.claude/skills/` for personal use or `.claude/skills/` inside a project.
+From npm, into Claude Code (`.claude/skills`) or Codex (`.agents/skills`):
 
-For Claude.ai, ChatGPT, Perplexity Computer, or another upload-based client, upload the ZIP for the selected skill. Each ZIP keeps `SKILL.md` at the archive root as required by upload-based clients.
+```sh
+npx @rankizz/skills                                        # all skills, current project
+npx @rankizz/skills rankizz-research-keywords --global     # one skill, personal
+npx @rankizz/skills --agent codex
+```
+
+Full instructions for every client are at [rankizz.com/docs/skills](https://www.rankizz.com/docs/skills). Upload-based clients (Claude.ai, ChatGPT) can still use a ZIP built with `python3 scripts/build_packages.py`.
 
 ## Rankizz access
 
