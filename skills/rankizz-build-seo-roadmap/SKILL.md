@@ -7,6 +7,10 @@ description: Build a prioritized 1–30 day SEO roadmap from a site's Ahrefs Dom
 
 Build an executable roadmap from measured constraints. Diagnose before prescribing and never promise a ranking position.
 
+## Invoke Rankizz MCP tools
+
+When using Rankizz through MCP, the initial tool list is intentionally compact. Call `search_tools` with a capability query or exact domain-tool name and set `includeSchemas: true` unless the arguments are already known. Invoke a discovered tool with `call_read_tool` when its `readOnlyHint` is `true`; use `call_tool` for every other tool. Pass the discovered name as `tool` and its original input object as `arguments`. REST callers continue to use the direct `/api/v1/tools/<tool-name>` endpoint.
+
 ## Resolve access and scope
 
 Prefer Rankizz MCP with OAuth in interactive clients. Use the REST API for headless clients. Never ask the user to paste a credential into chat; send them to `https://www.rankizz.com/api-access` when a key is needed.
