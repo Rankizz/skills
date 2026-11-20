@@ -9,6 +9,10 @@ Act as the entry point for the Rankizz skill collection. Inspect the task and cu
 
 Read [references/skill-catalog.md](references/skill-catalog.md) before selecting or installing specialist skills.
 
+## Invoke Rankizz MCP tools
+
+When using Rankizz through MCP, the initial tool list is intentionally compact. Call `search_tools` with a capability query or exact domain-tool name and set `includeSchemas: true` unless the arguments are already known. Invoke a discovered tool with `call_read_tool` when its `readOnlyHint` is `true`; use `call_tool` for every other tool. Pass the discovered name as `tool` and its original input object as `arguments`. REST callers continue to use the direct `/api/v1/tools/<tool-name>` endpoint.
+
 ## Inspect before changing the project
 
 1. Identify the canonical site, business goal, target market, requested outcome, deadline, and available evidence.
@@ -77,6 +81,12 @@ Use the Rankizz REST API for headless services, CI, deterministic scripts, or ap
 - authentication: `Authorization: Bearer <key>`
 
 Tell the user to store the key in a secret manager or environment variable. Do not display, persist, log, or commit the key.
+
+## Route AI prompt research
+
+For an AI brand-mention or source-check request, discover `research_ai_rank_tracking_prompt` with `search_tools` and `includeSchemas: true`, then invoke it through `call_tool`. REST uses `POST /api/v1/tools/research_ai_rank_tracking_prompt`. Supply `projectId`, one `prompt`, and selected `providers`: `chatgpt`, `google_ai_mode`, `perplexity`, `gemini`, or `claude`. This metered check does not change the saved prompt set.
+
+Read every provider result's `status` even when the outer call succeeds. Blocked, empty, or timed-out responses return `UPSTREAM_UNAVAILABLE`; treat them as missing evidence. Successful results have a non-empty answer and may have an empty citation list. The citation list includes source links, with Google AI Mode attached sources as a fallback, so it does not prove every URL was cited inline. Keep the prompt, market, provider, and research timestamp with any visibility conclusion.
 
 ## Enforce Rankizz access rules
 
