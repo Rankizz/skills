@@ -9,6 +9,10 @@ Write for one subreddit, not for Reddit in general. Give readers a complete payo
 
 Read [references/reddit-post-standards.md](references/reddit-post-standards.md) before researching or drafting.
 
+## Invoke Rankizz MCP tools
+
+When using Rankizz through MCP, the initial tool list is intentionally compact. Call `search_tools` with a capability query or exact domain-tool name and set `includeSchemas: true` unless the arguments are already known. Invoke a discovered tool with `call_read_tool` when its `readOnlyHint` is `true`; use `call_tool` for every other tool. Pass the discovered name as `tool` and its original input object as `arguments`. REST callers continue to use the direct `/api/v1/tools/<tool-name>` endpoint.
+
 ## Build the brief
 
 Resolve:
