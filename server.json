@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.Rankizz/rankizz",
+  "title": "Rankizz",
+  "description": "SEO research and tracking: keywords, SERPs, backlinks, site audits, Search Console and GA4.",
+  "version": "1.0.0",
+  "websiteUrl": "https://www.rankizz.com",
+  "repository": {
+    "url": "https://github.com/Rankizz/skills",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://www.rankizz.com/mcp"
+    }
+  ]
+}
