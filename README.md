@@ -1,5 +1,7 @@
 # Rankizz Agent Skills
 
+[![mcptry](https://mcptry.com/badge/io.github.Rankizz/rankizz)](https://mcptry.com/servers/io.github.Rankizz/rankizz)
+
 Portable SEO and audience-research workflows for Claude, Codex, ChatGPT, and other agents that support the Agent Skills format.
 
 Each skill is an independent folder with a public `SKILL.md`. Some workflows can run entirely with local files and network tools. Others can optionally use Rankizz MCP or the Rankizz REST API for live search, backlink, analytics, and audit data.
