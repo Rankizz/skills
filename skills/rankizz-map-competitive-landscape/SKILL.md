@@ -7,6 +7,10 @@ description: Map an organic-search market by identifying recurring ranking domai
 
 Explain who wins the search market, why, and where the user's site can compete. Do not reduce the result to a list of familiar business competitors.
 
+## Invoke Rankizz MCP tools
+
+When using Rankizz through MCP, the initial tool list is intentionally compact. Call `search_tools` with a capability query or exact domain-tool name and set `includeSchemas: true` unless the arguments are already known. Invoke a discovered tool with `call_read_tool` when its `readOnlyHint` is `true`; use `call_tool` for every other tool. Pass the discovered name as `tool` and its original input object as `arguments`. REST callers continue to use the direct `/api/v1/tools/<tool-name>` endpoint.
+
 ## Define the market
 
 Use existing project context when available. Establish:
@@ -33,6 +37,12 @@ Use Rankizz only when live or provider-backed evidence is needed:
 - `get_ahrefs_domain_rating` for a free cached directional DR check
 
 Hosted calls require at least 10 credits. Stop cloud calls on a low-credit response, link to `https://www.rankizz.com/billing`, and continue with evidence already available. Batch work and avoid enriching every discovered domain.
+
+## Compare AI answers when requested
+
+Use `research_ai_rank_tracking_prompt` for a bounded AI visibility comparison. Discover its current schema through `search_tools`, then dispatch with `call_tool`. Supply `projectId`, one representative `prompt`, and the relevant `providers`: `chatgpt`, `google_ai_mode`, `perplexity`, `gemini`, or `claude`. Set the comparison market with `countryCode` and `languageCode`. This metered operation does not save prompts for later runs.
+
+Inspect each result's `status`; failed or timed-out providers are missing evidence and must be excluded from visibility denominators. Successful answers can have no source URLs. The `citations` list combines citations and sources, including Google AI Mode attached source links when explicit citation/source fields are empty. Verify the answer before calling a source an inline citation. Record `researchedAt`, the prompt, providers, and market rather than claiming the run represents the entire AI search market.
 
 ## Classify competitors
 
@@ -67,3 +77,8 @@ Separate evidence from inference. Do not claim causation from correlation.
 Return a landscape map containing the query set, competitor-type matrix, recurring winners, content and authority patterns, defensible opportunities, risks, and the next three research actions.
 
 Recommend deeper single-competitor analysis only for domains whose evidence warrants it.
+
+For repeated comparisons, save the reviewed prompts with `add_ai_prompt`,
+choose engines with `configure_ai_prompt_run`, and explicitly request
+`run_ai_prompts`. Reuse the same UUID `runId` on retries and read the stored
+result with `get_ai_prompt_run`; there is no automatic schedule.
